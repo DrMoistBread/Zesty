@@ -1,0 +1,42 @@
+@page "/menu"
+
+@using Domain.MenuAggregate
+@using Domain.MenuAggregate.Interfaces
+@inject IMenuRepository MenuRepository
+<h1>Menu</h1>
+
+
+@foreach (var menu in _menus!)
+{
+    <nav> <h2>@menu.Name</h2>  
+        @foreach (var menuItem in menu.MenuItems)
+        {
+            <navitem style="margin-left: 10px">
+                <h3>@menuItem.Name</h3>
+                <p>@menuItem.Ingredients</p>
+                <p>@menuItem.Price.Amount @menuItem.Price.Currency</p>
+            </navitem>
+        }
+        </nav>
+    
+    
+}
+
+@code {
+    
+    private List<Menu>? _menus;
+   
+    
+
+    protected override Task OnInitializedAsync()
+    {
+        var seed = new MenuSeed(MenuRepository);
+        
+        seed.Seed();
+        
+        _menus = MenuRepository.ListAll();
+        
+        return base.OnInitializedAsync();
+    }
+
+}
