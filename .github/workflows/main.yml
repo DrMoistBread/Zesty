@@ -25,10 +25,10 @@ jobs:
       run: ls -R
 
     - name: Restore dependencies
-      run: dotnet restore ./CustomerUi/CustomerUi.csproj
+      run: dotnet restore
 
     - name: Build
-      run: dotnet build CustomerUi/CustomerUi.csproj --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test CustomerUi/CustomerUi.csproj --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal
