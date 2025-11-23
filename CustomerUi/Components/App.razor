@@ -17,8 +17,13 @@
 </head>
 
 <body>
-<Routes/>
+
+<Routes @rendermode=InteractiveServer />
 <script src="_framework/blazor.web.js"></script>
+<!-- Load the QR library first -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+
+<script src="js/QrCodeReader.js"></script>
 </body>
 
 </html>
